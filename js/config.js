@@ -53,7 +53,7 @@ window.SITE = {
 
   /* ---------- Mapa (volitelné) ----------
      true = pod kontaktem se zobrazí mapa sídla (Google Maps, bez API klíče).
-     Načte se až po kliknutí, kvůli rychlosti a cookies Googlu. */
+     Načítá se až ve chvíli, kdy k ní návštěvník doroluje. */
   showMap: true,
 
   /* ---------- Profil ---------- */

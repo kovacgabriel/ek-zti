@@ -162,28 +162,21 @@
     if (S.workingHours) row("clock", "Pracovní doba", S.workingHours);
   });
 
-  /* Mapa – načte se až po kliknutí (rychlost + žádné cookies předem) */
+  /* Mapa Google – zobrazí se hned (načítá se líně, až když k ní návštěvník doroluje) */
   render("map", function (box) {
     if (!S.showMap) { box.remove(); return; }
-    var btn = el("button", { type: "button", class: "map__placeholder" }, [
-      el("span", null, [icon("pin"), ""]),
-      el("span", null, ["Zobrazit mapu", el("small", { text: addressLine + " · načte se z Google Maps" })])
-    ]);
-    btn.addEventListener("click", function () {
-      var q = encodeURIComponent(addressLine);
-      var frame = el("iframe", {
-        title: "Mapa – " + addressLine,
-        loading: "lazy",
-        referrerpolicy: "no-referrer-when-downgrade",
-        allowfullscreen: "",
-        src: "https://www.google.com/maps?q=" + q + "&z=15&hl=cs&output=embed"
-      });
-      var link = el("p", { style: "margin:10px 0 0;font-size:.9rem" }, [
-        el("a", { href: "https://www.google.com/maps/search/?api=1&query=" + q, target: "_blank", rel: "noopener" }, ["Otevřít v Google Maps ↗"])
-      ]);
-      box.replaceChildren(frame, link);
+    var q = encodeURIComponent(addressLine);
+    var frame = el("iframe", {
+      title: "Mapa – " + addressLine,
+      loading: "lazy",
+      referrerpolicy: "no-referrer-when-downgrade",
+      allowfullscreen: "",
+      src: "https://www.google.com/maps?q=" + q + "&z=15&hl=cs&output=embed"
     });
-    box.appendChild(btn);
+    var link = el("p", { style: "margin:10px 0 0;font-size:.9rem" }, [
+      el("a", { href: "https://www.google.com/maps/search/?api=1&query=" + q, target: "_blank", rel: "noopener" }, ["Otevřít v Google Maps ↗"])
+    ]);
+    box.append(frame, link);
   });
 
   /* ---------- Patička ---------- */
