@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zásady ochrany osobních údajů | Ing. Eva Kováčová – projektantka ZTI</title>
+  <meta name="description" content="Jak zpracovávám osobní údaje z kontaktního formuláře a e-mailové komunikace.">
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#0B3C49">
+  <link rel="icon" href="img/favicon.ico" sizes="any">
+  <link rel="icon" href="img/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap&subset=latin-ext" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/config.js"></script>
+  <style>
+    .legal { max-width: 760px; padding: 48px 20px 96px; margin: 0 auto; }
+    .legal h1 { font-size: clamp(1.9rem, 5vw, 2.6rem); }
+    .legal h2 { font-size: 1.3rem; margin-top: 2em; }
+    .legal p, .legal li { color: var(--muted); }
+    .legal ul { list-style: disc; padding-left: 1.3em; margin-bottom: 1em; }
+    .legal .back { display: inline-flex; gap: 8px; align-items: center; font-weight: 700; margin-bottom: 24px; }
+  </style>
+</head>
+<body>
+  <main class="legal">
+    <a class="back" href="index.html">← Zpět na hlavní stránku</a>
+    <h1>Zásady ochrany osobních údajů</h1>
+    <p>Platné od: <span data-today></span></p>
+
+    <h2>Kdo údaje zpracovává</h2>
+    <p>Správcem osobních údajů je <strong data-text="name"></strong>, IČO <span data-text="ico"></span>,
+      se sídlem <span data-text="address.street"></span>, <span data-text="address.zip"></span> <span data-text="address.city"></span>.
+      Kontakt: <span data-text="email"></span>, tel. <span data-text="phone"></span>.</p>
+
+    <h2>Jaké údaje a proč</h2>
+    <p>Pokud mě kontaktujete přes formulář, e-mail nebo telefon, zpracovávám údaje, které mi sami poskytnete
+      (jméno, e-mail, telefon, popis stavby a obsah zprávy), a to pouze za účelem:</p>
+    <ul>
+      <li>vyřízení vaší poptávky a přípravy nabídky (jednání o smlouvě, čl. 6 odst. 1 písm. b) GDPR),</li>
+      <li>plnění smlouvy o zpracování projektové dokumentace a souvisejících zákonných povinností, např. účetních a daňových (čl. 6 odst. 1 písm. b) a c) GDPR).</li>
+    </ul>
+
+    <h2>Jak dlouho</h2>
+    <p>Údaje z poptávky, která nevedla ke spolupráci, uchovávám nejdéle 1 rok. Údaje související se zakázkou
+      uchovávám po dobu trvání smlouvy a dále po dobu stanovenou právními předpisy (např. účetní doklady 10 let).</p>
+
+    <h2>Komu údaje předávám</h2>
+    <p>Údaje neprodávám ani nepředávám třetím stranám pro marketingové účely. Mohou k nim mít přístup pouze
+      zpracovatelé, kteří mi pomáhají s provozem webu a komunikace:</p>
+    <ul>
+      <li>poskytovatel e-mailové schránky,</li>
+      <li>služba pro odesílání formuláře (např. Formspree, Inc., USA – předání na základě standardních smluvních doložek), pokud je formulář takto nastaven,</li>
+      <li>hosting webu GitHub Pages (GitHub, Inc.) – technické záznamy o přístupu (IP adresa),</li>
+      <li>Google Fonts (Google LLC) – načtení písma, při kterém je předána IP adresa.</li>
+    </ul>
+
+    <h2>Cookies</h2>
+    <p>Web sám nepoužívá analytické ani reklamní cookies. Mapa Google Maps (Google LLC) se načte až poté,
+      co na ni kliknete; teprve potom může Google ukládat své cookies a zpracovávat vaši IP adresu
+      podle svých <a href="https://policies.google.com/privacy?hl=cs" rel="noopener">zásad ochrany soukromí</a>.</p>
+
+    <h2>Vaše práva</h2>
+    <p>Máte právo požadovat přístup ke svým údajům, jejich opravu nebo výmaz, omezení zpracování, vznést námitku
+      a právo na přenositelnost údajů. Stačí mi napsat na výše uvedený e-mail. Máte také právo podat stížnost
+      u Úřadu pro ochranu osobních údajů (<a href="https://uoou.gov.cz" rel="noopener">www.uoou.gov.cz</a>).</p>
+  </main>
+  <script>
+    (function () {
+      var S = window.SITE || {};
+      document.querySelectorAll("[data-text]").forEach(function (n) {
+        var v = n.getAttribute("data-text").split(".").reduce(function (o, k) { return o && o[k]; }, S);
+        if (v == null) return;
+        if (/\[(DOPLNIT|UPŘESNIT)/.test(v)) { var s = document.createElement("span"); s.className = "todo"; s.textContent = v; n.appendChild(s); }
+        else n.textContent = v;
+      });
+      /* [DOPLNIT] datum platnosti – nebo nechte automaticky dnešní */
+      document.querySelector("[data-today]").textContent = "1. 1. 2026";
+    })();
+  </script>
+</body>
+</html>
